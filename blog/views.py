@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import ListView
 
-from blog.models import Post
+from blog.models import Post, Comment
 
 
 def get_profile(httpRequest):
@@ -49,3 +49,11 @@ class PostView(ListView):
 
     def get_queryset(self):
         return Post.objects.all()
+
+
+class CommentView(ListView):
+    model = Comment
+    template_name = 'comments_list.html'
+
+    def get_ordering(self):
+        return Comment.objects.all()
